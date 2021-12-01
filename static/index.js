@@ -4,6 +4,7 @@ const telegram_url = "https://t.me/d_marichuk"
 const linkedin_url = "https://www.linkedin.com/in/daniel-marichuk-8a078420a/"
 
 var counter = document.querySelector("#counter")
+var loader = document.querySelector(".loader")
 
 function bindRedirectToElement(selector, url) {
   document.querySelector(selector).addEventListener("click", function () {
@@ -50,7 +51,12 @@ async function put_cookie_counter() {
 
   xhr.addEventListener("readystatechange", function () {
     if (this.readyState === 4) {
+      loader.style.display = "none";
+      counter.style.display = "block";
       counter.innerText = parseInt(counter.innerText) + 1
+    } else {
+      counter.style.display = "none";
+      loader.style.display = "block";
     }
   })
 
